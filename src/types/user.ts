@@ -14,6 +14,8 @@ export type UserView = {
   postCount: number
   createdAt: string
   updatedAt: string
+  weekday: string
+  city: string
 }
 
 export type GetUsersResponse = {
