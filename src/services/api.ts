@@ -7,3 +7,19 @@ export async function request<T>(endpoint: string): Promise<T> {
   }
   return response.json()
 }
+
+export async function post<T, B>(endpoint: string, body: B): Promise<T> {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+
+  if (!response.ok) {
+    throw new Error("API request failed")
+  }
+
+  return response.json()
+}

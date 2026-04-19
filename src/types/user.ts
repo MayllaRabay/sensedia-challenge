@@ -45,3 +45,9 @@ export type UserPost = {
 export type GetUserPostsResponse = {
   posts: UserPost[]
 }
+
+export type CreateUserInput = {
+  name: string
+  email: string
+  password: string
+}

@@ -1,9 +1,10 @@
 import {
   GetUserAlbumsResponse,
   GetUserPostsResponse,
-  GetUsersResponse
+  GetUsersResponse,
+  User
 } from "@/types/user"
-import { request } from "./api"
+import { post, request } from "./api"
 
 export async function getUsers(): Promise<GetUsersResponse["users"]> {
   const data = await request<GetUsersResponse>("/users")
@@ -22,4 +23,10 @@ export async function getUserPosts(
 ): Promise<GetUserPostsResponse["posts"]> {
   const data = await request<GetUserPostsResponse>(`/users/${userId}/posts`)
   return data.posts
+}
+
+export async function createUser<CreateUserInput>(
+  input: CreateUserInput
+): Promise<User> {
+  return post("/users/create", input)
 }
