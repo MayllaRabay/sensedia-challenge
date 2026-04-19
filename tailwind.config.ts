@@ -1,5 +1,8 @@
 const config = {
-  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     extend: {
       borderRadius: {
