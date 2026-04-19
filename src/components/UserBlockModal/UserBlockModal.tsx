@@ -1,16 +1,16 @@
 "use client"
 
-interface BlockUserModalProps {
+interface UserBlockModalProps {
   open: boolean
   onConfirm: () => void
   onClose: () => void
 }
 
-export function BlockUserModal({
+export function UserBlockModal({
   open,
   onConfirm,
   onClose
-}: BlockUserModalProps) {
+}: UserBlockModalProps) {
   if (!open) return null
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center">

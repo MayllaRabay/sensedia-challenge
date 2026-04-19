@@ -3,7 +3,7 @@
 import { useDebounce } from "@/hooks/useDebounce"
 import { UserView } from "@/types/user"
 import { useState } from "react"
-import { BlockUserModal } from "../BlockUserModal/BlockUserModal"
+import { UserBlockModal } from "../UserBlockModal/UserBlockModal"
 
 type Props = {
   users: UserView[]
@@ -183,7 +183,7 @@ export function UserTable({ users }: Props) {
           Next
         </button>
       </div>
-      <BlockUserModal
+      <UserBlockModal
         open={isModalOpen}
         onClose={handleClose}
         onConfirm={handleConfirm}
