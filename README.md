@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center"> 
+	👥 Sensedia User Table 📃
+</h1>
 
-## Getting Started
+## 💻 About the Project
 
-First, run the development server:
+A technical challenge for Sensedia that focuses on building a clean and maintainable interface for managing users, including listing, creating, and viewing detailed information. The project follows a design system, using Next.js, TypeScript and Tailwind.
+
+<!-- > 🚀 **[Live Demo]()** -->
+
+## 🎯 Goals
+
+- Build a responsive and user-friendly interface for managing users
+- Ensure clean and maintainable code structure
+- Handle API data safely, considering possible inconsistencies
+- Provide a good user experience with proper feedback (loading, errors, interactions)
+- Demonstrate decision-making and technical reasoning throughout the implementation
+
+## 📸 Screenshots
+
+🛠️ In progress...
+
+## 💡 Prerequisites for Running the Project
+
+- Install [**Git**](https://git-scm.com).
+- Install [**Node.js**](https://nodejs.org/en/).
+- Install [**VSCode**](https://code.visualstudio.com/download) or [**Neovim**](https://neovim.io/).
+
+## ▶️ Running the Project
+
+1. Open your terminal and clone this repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/MayllaRabay/sensedia-challenge.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project folder:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd sensedia-challenge
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Download all application dependencies and packages:
 
-## Learn More
+```bash
+yarn install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the application in development mode:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. The application will open on port 3000. Access it in your browser:
+   http://localhost:3000
 
-## Deploy on Vercel
+## 🔧 Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [![Next.js](https://img.shields.io/badge/-Next-000000)](https://nextjs.org/docs)
+- [![Tailwindcss](https://img.shields.io/badge/-Tailwindcss-2196f3)](https://tailwindcss.com/)
+- [![TypeScript](https://img.shields.io/badge/-Typescript-155991)](https://www.typescriptlang.org/docs/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Made with 💜 by Maylla Rabay
