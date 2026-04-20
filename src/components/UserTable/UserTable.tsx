@@ -1,16 +1,26 @@
 "use client"
 
 import { useDebounce } from "@/hooks/useDebounce"
-import { UserView } from "@/types/user"
+import { createUser } from "@/services/user"
+import { User, UserView } from "@/types/user"
+import { formatDateTime } from "@/utils/date"
 import { useState } from "react"
 import { UserBlockModal } from "../UserBlockModal/UserBlockModal"
+import {
+  UserCreateFormData,
+  UserCreateModal
+} from "../UserCreateModal/UserCreateModal"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
 
 type Props = {
   users: UserView[]
 }
 
 export function UserTable({ users }: Props) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [usersState, setUsersState] = useState<UserView[]>(users)
+  const [isBlockModalOpen, setIsBlockModalOpen] = useState<boolean>(false)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [selectedUser, setSelectedUser] = useState<UserView | null>(null)
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState("")
@@ -30,11 +40,14 @@ export function UserTable({ users }: Props) {
     "Actions"
   ]
   const pageSize = 10
-  const filteredUsers = users.filter((user) =>
-    (user.name + user.email)
+  const filteredUsers = usersState.filter((user) => {
+    const name = user?.name ?? ""
+    const email = user?.email ?? ""
+
+    return `${name}${email}`
       .toLowerCase()
       .includes(debouncedSearch.toLowerCase())
-  )
+  })
   const sortedUsers = [...filteredUsers].sort((a, b) =>
     sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
   )
@@ -46,10 +59,10 @@ export function UserTable({ users }: Props) {
 
   const handleOpen = (user: UserView) => {
     setSelectedUser(user)
-    setIsModalOpen(true)
+    setIsBlockModalOpen(true)
   }
   const handleClose = () => {
-    setIsModalOpen(false)
+    setIsBlockModalOpen(false)
     setSelectedUser(null)
   }
   const handleConfirm = () => {
@@ -68,17 +81,40 @@ export function UserTable({ users }: Props) {
     setPage(1)
   }
 
-  if (!users) return <p>Loading...</p>
+  const handleCreateUser = async (data: UserCreateFormData): Promise<User> => {
+    const response = await createUser(data)
+    return response
+  }
+
+  const handleUserCreated = (createdUser: User) => {
+    console.log("createdUser", createdUser)
+    setUsersState((prev) => [
+      {
+        id: createdUser.id,
+        name: createdUser.name,
+        email: createdUser.email,
+        albumCount: 0,
+        postCount: 0,
+        createdAt: formatDateTime(createdUser.created_at),
+        updatedAt: formatDateTime(createdUser.updated_at),
+        weekday: "-",
+        city: "-"
+      },
+      ...prev
+    ])
+  }
 
   return (
     <div className="p-8 flex flex-col gap-8 h-[100vh]">
       <h1 className="text-h1">Users</h1>
-      <input
-        value={search}
-        onChange={(e) => handleSearch(e.target.value)}
-        placeholder="Search users..."
-        className="font-mono border border-border p-2 rounded-sm text-body focus:outline-none focus:ring-2 focus:ring-primary-light"
-      />
+      <div className="flex justify-between items-center gap-4">
+        <Input
+          value={search}
+          onChange={(e) => handleSearch(e.target.value)}
+          placeholder="Search users..."
+        />
+        <Button onClick={() => setIsCreateModalOpen(true)}>+ New user</Button>
+      </div>
       <div className="bg-surface shadow-sm rounded-md border border-border overflow-x-auto overflow-y-auto max-h-[75vh]">
         <table
           className="w-full border-collapse"
@@ -167,26 +203,32 @@ export function UserTable({ users }: Props) {
         </table>
       </div>
       <div className="flex justify-between mt-auto">
-        <button
+        <Button
           onClick={() => setPage((p) => Math.max(p - 1, 1))}
-          className={`${page === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"} font-mono text-text-secondary px-4 py-2 rounded-sm text-body border border-borderhover:bg-surface transition`}
+          disabled={page === 1}
         >
           Prev
-        </button>
+        </Button>
         <span className="font-mono text-body text-text-secondary">
           Page {page} of {totalPages}
         </span>
-        <button
+        <Button
           onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-          className={`${page === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"} font-mono text-text-secondary px-4 py-2 rounded-sm text-body border border-borderhover:bg-surface transition`}
+          disabled={page === totalPages}
         >
           Next
-        </button>
+        </Button>
       </div>
       <UserBlockModal
-        open={isModalOpen}
+        open={isBlockModalOpen}
         onClose={handleClose}
         onConfirm={handleConfirm}
+      />
+      <UserCreateModal
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={handleCreateUser}
+        onSuccess={handleUserCreated}
       />
     </div>
   )
