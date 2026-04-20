@@ -18,7 +18,12 @@ A technical challenge for Sensedia that focuses on building a clean and maintain
 
 ## 📸 Screenshots
 
-🛠️ In progress...
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/647a73e0-5f92-4229-93fc-c7b4246b8f66" />
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/8ba2acf6-a24f-4824-a968-2e47d6a5b1ef" />
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/c03a0dc2-a432-4cc7-a7c7-84083177d248" />
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/521f2e9a-48c1-41fe-b045-968f71d87b0f" />
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/3f1a26a9-be5e-4bb3-8bc3-ea2f343c1455" />
+<img width="1206" height="936" alt="image" src="https://github.com/user-attachments/assets/75838ef7-8d72-4221-b870-e25f44c362e8" />
 
 ## 💡 Prerequisites for Running the Project
 
