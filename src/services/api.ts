@@ -17,9 +17,18 @@ export async function post<T, B>(endpoint: string, body: B): Promise<T> {
     body: JSON.stringify(body)
   })
 
-  if (!response.ok) {
-    throw new Error("API request failed")
+  const text = await response.text()
+
+  let data
+  try {
+    data = JSON.parse(text)
+  } catch {
+    data = null
   }
 
-  return response.json()
+  if (!response.ok) {
+    throw new Error(data?.message || text || "API request failed")
+  }
+
+  return data
 }

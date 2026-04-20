@@ -1,8 +1,9 @@
 import {
+  CreateUserInput,
+  CreateUserResponse,
   GetUserAlbumsResponse,
   GetUserPostsResponse,
-  GetUsersResponse,
-  User
+  GetUsersResponse
 } from "@/types/user"
 import { post, request } from "./api"
 
@@ -25,8 +26,12 @@ export async function getUserPosts(
   return data.posts
 }
 
-export async function createUser<CreateUserInput>(
+export async function createUser(
   input: CreateUserInput
-): Promise<User> {
-  return post("/users/create", input)
+): Promise<CreateUserResponse["user"]> {
+  const data = await post<CreateUserResponse, CreateUserInput>(
+    "/users/create",
+    input
+  )
+  return data.user
 }

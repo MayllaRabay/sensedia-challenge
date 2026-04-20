@@ -51,3 +51,7 @@ export type CreateUserInput = {
   email: string
   password: string
 }
+
+export type CreateUserResponse = {
+  user: User
+}
